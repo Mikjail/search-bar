@@ -1,0 +1,45 @@
+// .SearchBar {
+//   padding-top: 64px;
+//   &::placeholder {
+//     color: color(#cecece a(0.8));
+//     text-transform: uppercase;
+//     letter-spacing: 1.5px;
+//   }
+
+//   &_title {
+//     font-size: 22px;
+//     font-weight: 900;
+//     text-align: center;
+//     color: #cecece;
+//   }
+//   &_input {
+//     display: block;
+//     margin: auto;
+//     width: 50%;
+//     padding: 12px 24px;
+//     background-color: transparent;
+//     transition: transform 250ms ease-in-out;
+//     font-size: 14px;
+//     line-height: 18px;
+//     color: #cecece;
+//     background-color: transparent;
+//     background-repeat: no-repeat;
+//     background-size: 18px 18px;
+//     background-position: 95% center;
+//     border-radius: 50px;
+//     border: 1px solid #cecece;
+//     transition: all 250ms ease-in-out;
+//     backface-visibility: hidden;
+//     transform-style: preserve-3d;
+
+//     &:hover,
+//     &:focus {
+//       padding: 12px 0;
+//       outline: 0;
+//       border: 1px solid transparent;
+//       border-bottom: 1px solid #cecece;
+//       border-radius: 0;
+//       background-position: 100% center;
+//     }
+//   }
+// }
