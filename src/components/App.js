@@ -1,8 +1,13 @@
 import React from 'react';
-import './App.css';
+import style from './App.scss';
+import SearchBar from './SearchBar';
 
 function App() {
-  return <div className="App">Hello World!</div>;
+  return (
+    <div className={style.App}>
+      <SearchBar />
+    </div>
+  );
 }
 
 export default App;
