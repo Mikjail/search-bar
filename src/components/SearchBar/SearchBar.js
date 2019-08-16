@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import style from './index.scss';
 import _ from 'lodash';
+import { fetchData } from '../../services/movies';
+import ResultListComponent from '../ResultList';
+import './index.scss';
 
 const SearchBarComponent = () => {
   const [query, setQuery] = useState('');
   const [searchQuery, setSearchQuery] = useState({});
-
+  const [dataList, setDataList] = useState([]);
+  const [errorMssg, setErrorMssg] = useState('');
   /**
    * This will be called every time there is
    * a change in the input
@@ -23,22 +26,49 @@ const SearchBarComponent = () => {
       return search;
     });
 
-    search(value);
+    if (value) {
+      search(value);
+    } else {
+      setDataList([]);
+      setErrorMssg('');
+    }
   };
 
   /**
    * In charge to send the value
-   * to Back End.
+   * to the API.
    * @param {*} value
    */
-  const sendQuery = value => {
-    console.log(value);
+  const sendQuery = async value => {
+    const { cancelPrevQuery, result } = await fetchData(value);
+
+    if (cancelPrevQuery) return;
+
+    if (result.Response === 'True') {
+      setDataList(result.Search);
+      setErrorMssg('');
+    } else {
+      setDataList([]);
+      setErrorMssg(result.Error);
+    }
   };
 
   return (
     <div>
-      <p>Type to search!</p>
-      <input type="text" value={query} placeholder="Enter Movie Title" onChange={onChange} />
+      <div className="SearchBar">
+        <p className="SearchBar_title">Type to search!</p>
+        <input
+          className="SearchBar_input"
+          type="text"
+          value={query}
+          placeholder="Enter Movie Title"
+          onChange={onChange}
+        />
+      </div>
+      <div>
+        <ResultListComponent items={dataList} />
+        {errorMssg}
+      </div>
     </div>
   );
 };
